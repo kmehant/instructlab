@@ -960,7 +960,9 @@ def _run_phased_training(
 
     click.secho("MMLU evaluation for Phase 1...", fg="cyan")
     # NOTE: requires hf_format sub-directory. Training sets this up.
-    phase1_checkpoints_dir = phase1_checkpoints_dir / "hf_format"
+    # above note is supersceded
+    # this is for ilab, however, this should not have been hardcoded
+    phase1_checkpoints_dir = phase1_checkpoints_dir
     _, p1_best_ckpt = _evaluate_dir_of_checkpoints(
         checkpoints_dir=phase1_checkpoints_dir, eval_func=_mmlu
     )
@@ -978,7 +980,7 @@ def _run_phased_training(
     )
 
     click.secho("MT-Bench evaluation for Phase 2...", fg="cyan")
-    phase2_checkpoints_dir = phase2_checkpoints_dir / "hf_format"
+    phase2_checkpoints_dir = phase2_checkpoints_dir
     phase2_eval_cache = base_dir / "phase2" / "eval_cache"
     phase2_best_checkpoint_score, phase2_best_checkpoint = _evaluate_dir_of_checkpoints(
         checkpoints_dir=phase2_checkpoints_dir,
